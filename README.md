@@ -1,6 +1,6 @@
 # Equation Defender
 
-A space shooter-style game where you defend against falling equations by typing the correct answers!
+Equation Defender represents an innovative fusion of educational mathematics and interactive gaming, implemented as a web-based three-dimensional space shooter. The project demonstrates the application of modern web technologies, specifically Three.js for 3D rendering, to create an engaging learning environment that combines entertainment with mathematical skill development.
 
 ## Getting Started
 
@@ -109,6 +109,16 @@ Edit `equations.csv` to add or modify equations:
 - Internet connection (for loading Three.js, GLTFLoader, and PapaParse libraries from CDN)
 - Local web server (Python, Node.js, or PHP) - see "Getting Started" section above
 
+## Technical Architecture
+
+- **Frontend Framework**: Vanilla JavaScript (ES6+)
+- **3D Rendering Engine**: Three.js (r128)
+- **Data Management**: CSV-based equation storage with PapaParse
+- **3D Asset Loading**: GLTFLoader for binary model formats
+- **Styling**: CSS3 with modern retro-futuristic visual effects
+- **Audio System**: HTML5 Audio API for sound effects and background music
+- **Typography**: Google Fonts (Orbitron) for retro-futuristic aesthetic
+
 ## Project Structure
 
 ```
@@ -118,7 +128,7 @@ Equation Defender/
 ├── style.css          # Styling and UI design
 ├── equations.csv      # Equation data (editable)
 ├── README.md          # This file
-├── PROJECT_DOCUMENTATION.md  # Detailed technical documentation
+├── TheTeam.txt        # Member Roles
 └── assets/
     ├── Logo.png       # Game logo
     ├── shooter.glb    # 3D spaceship model
@@ -126,4 +136,3 @@ Equation Defender/
         ├── laser.mp3      # Laser sound effect
         └── background.mp3  # Background music
 ```
-
