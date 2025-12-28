@@ -1,0 +1,60 @@
+# TEAM MEMBER ROLES AND RESPONSIBILITY #
+
+The development of Equation Defender was a group effort where each member took on a 
+specific role to make the game look good, work correctly, and teach math effectively.
+The team consist of Benjamin Parinas, Laurence Meniano, and Jerby Calo that worked together
+to turn a math subject into a fun 3D space adventure.
+
+1. Laurence Meniano: Technical Lead & System Architect
+    -served as the primary architect for the game's core engine and 3D environment.
+    His role focused on the high-level technical framework that allows for real-time
+    interaction in a browser environment.
+
+    Scene Architecture:
+    Managed the initialization of the Three.js scene, including the configuration of the
+    perspective camera and the hardware-accelerated WebGL renderer.
+
+    Starfield Engineering:
+    Developed the advanced multi-layer parallax starfield, implementing the procedural
+    expansion algorithm that creates the illusion of infinite space.
+
+    Performance Optimization:
+    Oversaw memory management strategies, ensuring the explicit disposal of geometries
+    and materials to maintain a target of 60 FPS on modern hardware.
+
+2. Benjamin Parinas: Game Logic & Mathematical Integrator
+    -responsible for the gameplay mechanics and the integration of the educational curriculum. 
+    His role ensured that the game remained a viable learning tool while maintaining arcade-style
+    engagement.
+
+    Targeting Systems: 
+    Developed the nearest-neighbor matching algorithm and fuzzy matching logic
+    (0.01 threshold) to validate player inputs against active equations.
+
+    Level Design:
+    Structured the three-tier progression system, balancing mathematical complexity
+    (Arithmetic, Algebra, and Advanced Math) with decreasing temporal constraints to 
+    maintain a "flow" state.
+
+    Data Management:
+    Implemented the CSV-based storage system using PapaParse, allowing for the organized 
+    retrieval and validation of mathematical payloads.
+
+3. Jerby Calo: Creative Lead & UI/UX Designer
+    -directed the visual identity and sensory experience of the project. His work focused 
+    on the "Retro-Futuristic" aesthetic and ensuring that the user interface was both 
+    functional and visually stunning.
+
+    Visual Design System: 
+    Defined the "Cyber-Grid" color palette (Cyan and Magenta) and 
+    typography (Orbitron and Courier New) to evoke a classic 1980s terminal feel.
+
+    Asset Pipeline: 
+    Managed the GLB model loading process and material enhancement pipeline, 
+    ensuring that 3D assets reacted correctly to the scene's complex lighting.
+
+    Sensory Feedback: 
+    Integrated the HTML5 Audio API to synchronize background music and laser sound 
+    effects with gameplay events, providing immediate auditory feedback for correct answers.
+
+    
