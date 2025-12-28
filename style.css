@@ -1,0 +1,354 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+body {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    background: #000000;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 2px,
+            rgba(0, 255, 255, 0.03) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Start Screen */
+#startLogo {
+    max-width: 900px;
+    width: 90%;
+    height: auto;
+    margin-bottom: 3rem;
+}
+
+.btn {
+    padding: 20px 60px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    background: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00ffff 100%);
+    background-size: 200% 200%;
+    color: #000;
+    border: 3px solid #00ffff;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.8),
+        0 0 60px rgba(255, 0, 255, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    overflow: hidden;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transition: left 0.6s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 
+        0 0 40px rgba(0, 255, 255, 1),
+        0 0 80px rgba(255, 0, 255, 0.6),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.btn:active {
+    transform: scale(1.0) translateY(0);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.6),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Game Screen */
+#gameScreen {
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+#gameUI {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+#healthBarContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#healthBar {
+    width: 250px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #00ffff;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 255, 0.5),
+        inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#healthBar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+#healthBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--health-width, 100%);
+    background: linear-gradient(90deg, #ff0080 0%, #ff00ff 50%, #8000ff 100%);
+    transition: width 0.3s;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+}
+
+#healthText {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #00ffff;
+    text-shadow: 
+        0 0 10px rgba(0, 255, 255, 0.8),
+        0 0 20px rgba(0, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+#scoreDisplay, #levelDisplay {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ff00ff;
+    text-shadow: 
+        0 0 10px rgba(255, 0, 255, 0.8),
+        0 0 20px rgba(255, 0, 255, 0.4);
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 0, 255, 0.3);
+    border-radius: 0;
+}
+
+#inputDisplay {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#inputDisplay label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+
+#answerInput {
+    padding: 12px 18px;
+    font-size: 1.4rem;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-weight: 700;
+    border: 2px solid #00ffff;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #00ffff;
+    outline: none;
+    width: 280px;
+    text-align: center;
+    letter-spacing: 2px;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.5),
+        inset 0 0 10px rgba(0, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+#answerInput:focus {
+    border-color: #ff00ff;
+    color: #ff00ff;
+    box-shadow: 
+        0 0 25px rgba(255, 0, 255, 0.8),
+        inset 0 0 15px rgba(255, 0, 255, 0.2);
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#answerInput::placeholder {
+    color: rgba(0, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100vh;
+    display: block;
+}
+
+/* End Screen */
+#endScreen {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#endScreen h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: #00ffff;
+    font-weight: 900;
+    text-shadow: 
+        0 0 20px rgba(0, 255, 255, 1),
+        0 0 40px rgba(255, 0, 255, 0.8);
+    letter-spacing: 4px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        text-shadow: 
+            0 0 20px rgba(0, 255, 255, 1),
+            0 0 40px rgba(255, 0, 255, 0.8);
+    }
+    50% { 
+        text-shadow: 
+            0 0 30px rgba(0, 255, 255, 1),
+            0 0 60px rgba(255, 0, 255, 1);
+    }
+}
+
+#statsContainer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border: 2px solid #00ffff;
+    border-radius: 0;
+    margin-bottom: 2rem;
+    min-width: 500px;
+    max-width: 700px;
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.5),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.level-stats {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 0;
+    border-left: 4px solid #00ffff;
+    border-right: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.level-stats h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #00ffff;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    letter-spacing: 2px;
+}
+
+.level-stats p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.total-stats {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 0;
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+}
+
+.total-stats h2 {
+    font-size: 2rem;
+    color: #ff00ff;
+    font-weight: 900;
+    text-shadow: 
+        0 0 15px rgba(255, 0, 255, 1),
+        0 0 30px rgba(255, 0, 255, 0.6);
+    letter-spacing: 3px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+}
+

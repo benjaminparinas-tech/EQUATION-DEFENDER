@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equation Defender</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="startScreen" class="screen">
+        <img id="startLogo" src="assets/Logo.png" alt="Equation Defender Logo">
+        <button id="playButton" class="btn">Play Game</button>
+    </div>
+
+    <div id="gameScreen" class="screen hidden">
+        <div id="gameUI">
+            <div id="healthBarContainer">
+                <div id="healthBar"></div>
+                <span id="healthText">Health: 10/10</span>
+            </div>
+            <div id="scoreDisplay">Score: 0</div>
+            <div id="levelDisplay">Level: 1</div>
+            <div id="inputDisplay">
+                <label>Answer:</label>
+                <input type="text" id="answerInput" placeholder="Input and Enter">
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <div id="endScreen" class="screen hidden">
+        <h1>Game Complete!</h1>
+        <div id="statsContainer"></div>
+        <div class="button-group">
+            <button id="playAgainButton" class="btn">Play Again</button>
+            <button id="quitButton" class="btn">Quit</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Load GLTFLoader dynamically
+        (function() {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js';
+            script.onerror = function() {
+                // Fallback to another CDN
+                const fallback = document.createElement('script');
+                fallback.src = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/GLTFLoader.js';
+                document.head.appendChild(fallback);
+            };
+            document.head.appendChild(script);
+        })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
+
